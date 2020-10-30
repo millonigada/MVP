@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
+	<title>Register Page</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
@@ -14,7 +14,7 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="img/logo.jpg" alt="bootstrap 4 login page">
+						<img src="img/logo.png" alt="bootstrap 4 login page">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
@@ -24,7 +24,28 @@
 									<label for="name">Name</label>
 									<input id="name" type="text" class="form-control" name="name" required autofocus>
 									<div class="invalid-feedback">
-										What's your name?
+										Name cannot be blank
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="empID">Employee ID</label>
+									<input id="empID" type="text" class="form-control" name="empID" required>
+									<div class="invalid-feedback">
+										Please enter appropriate employee ID
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="designation">Designation</label>
+									<input id="designation" type="text" class="form-control" name="designation">
+								</div>
+
+								<div class="form-group">
+									<label for="mobileNo">Mobile Number</label>
+									<input id="mobileNo" type="number" class="form-control" name="mobileNo" required>
+									<div class="invalid-feedback">
+										Please enter appropriate Mobile Number
 									</div>
 								</div>
 
@@ -44,7 +65,7 @@
 									</div>
 								</div>
 
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<div class="custom-checkbox custom-control">
 										<input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
 										<label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
@@ -52,7 +73,7 @@
 											You must agree with our Terms and Conditions
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
@@ -60,13 +81,13 @@
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									Already have an account? <a href="index.html">Login</a>
+									Already have an account? <a href="login.php">Login</a>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div class="footer">
-						Copyright &copy; 2017 &mdash; Your Company 
+						Copyright &copy; 2020 &mdash; MVP 
 					</div>
 				</div>
 			</div>

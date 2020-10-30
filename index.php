@@ -57,8 +57,8 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Some Title</h1>
-        <p>Content for each page goes here, we need a document viewer for notes.</p>
+        <h1 class="mt-4">This is our homepage</h1>
+        <p>Information on how to navigate through the website</p>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
