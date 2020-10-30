@@ -47,9 +47,9 @@
       <div class="container-fluid">
         <h1 class="mt-4">Notes</h1>
         <p>
-          <a href="C:/Users/Lenovo/Downloads/Hashing%20and%20Collision.pdf">Hashing and Collision Notes</a><br>
-          <a href="C:/Users/Lenovo/Downloads/Exp3CG.pdf">Queue Notes</a><br>
-          <a href="">Transformation Notes</a>
+          <a href="C:/xampp/htdocs/notes/Hashing%20and%20Collision.pdf">Hashing and Collision Notes</a><br>
+          <a href="C:/xampp/htdocs/notes/QUEUE%20NOTES.pdf">Queue Notes</a><br>
+          <a href="C:/xampp/htdocs/notes/Transformation.pdf">Transformation Notes</a>
         </p>
       </div>
     </div>
