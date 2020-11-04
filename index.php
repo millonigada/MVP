@@ -23,13 +23,13 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <!-- <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">MVP Logo</div>
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">Data Structures</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Computer Graphics</a>
       </div>
-    </div>
+    </div> -->
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -44,14 +44,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav navbar-left ml-auto mt-2 mt-lg-0">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item" id="menu-toggle"><a class="nav-link" href="#">Notes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Quizzes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Software</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">QnA</a></li>
+            <li class="nav-item"><a class="nav-link" href="notes.php">Notes</a></li>
+            <li class="nav-item"><a class="nav-link" href="resources.php">Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="software.php">Software</a></li>
+            <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty</a></li>
+            <li class="nav-item"><a class="nav-link" href="teacherLogin/login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
           </ul>
         </div>
       </nav>
@@ -72,12 +71,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- Menu Toggle Script -->
-  <script>
+  <!-- <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-  </script>
+  </script> -->
 
 </body>
 
