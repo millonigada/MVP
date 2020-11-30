@@ -56,9 +56,15 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">This is our homepage</h1>
+        <h1 class="mt-4">This is our QnA section</h1>
         <p>Information on how to navigate through the website</p>
       </div>
+      <iframe
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/7acc0959-8460-4c72-b048-5d6f0cb04e45">
+      </iframe>
     </div>
     <!-- /#page-content-wrapper -->
 

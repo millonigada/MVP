@@ -1,3 +1,6 @@
+<?php 
+  require_once "connections.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +18,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/rstyle.css">
 
 </head>
 
@@ -24,10 +28,20 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">MVP Logo</div>
+      <div class="sidebar-heading"><img src="img/MVP.png" alt="MVP Logo" height="50px"></div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Data Structures</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Computer Graphics</a>
+        <?php 
+
+          $getSubjectQuery = "SELECT * FROM subject";
+          $getSubject = $pdo->query($getSubjectQuery);
+          while($row = $getSubject->fetch(PDO::FETCH_ASSOC))
+          {
+            echo ('<a href="#" class="list-group-item list-group-item-action bg-light">');
+            echo ($row['Subject_Name']);
+            echo ('</a>');
+          }
+
+        ?>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -45,9 +59,9 @@
           <ul class="navbar-nav navbar-left ml-auto mt-2 mt-lg-0">
             <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
             <li class="nav-item" id="menu-toggle"><a class="nav-link" href="#">Notes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Software</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">QnA</a></li>
+            <li class="nav-item"><a class="nav-link" href="resources.php">Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="software.php">Software</a></li>
+            <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
             <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
@@ -57,11 +71,37 @@
 
       <div class="container-fluid">
         <h1 class="mt-4">Notes</h1>
-        <p>
-          <a href="notes/Hashing%20and%20Collision.pdf" target="_blank">Hashing and Collision Notes</a><br>
-          <a href="notes/QUEUE%20NOTES.pdf" target="_blank">Queue Notes</a><br>
-          <a href="notes/Transformation.pdf" target="_blank">Transformation Notes</a>
-        </p>
+        <div class="container">
+        <div class="row main-row">
+            <?php 
+
+              $getModuleQuery = "SELECT * FROM module";
+              $getModule = $pdo->query($getModuleQuery);
+              while($row = $getModule->fetch(PDO::FETCH_ASSOC))
+              {
+                    $moduleImg = 'img/module'.$row['Module_ID'].'.jpg';
+
+                    echo ("<div class='col-md-4 mb-5'>");
+                      echo("<div class='card p-3' style='width: 18rem'>");
+                        echo('<img src="'.$moduleImg.'" '); 
+
+                        echo( "alt='stock photo' class='card-img-top shadow bg-white rounded'>");
+                        echo("<div class='card-body'>");
+                          echo("<h5 class='card-title'>"); 
+                            echo $row['Module_Name']; 
+                          echo ("</h5>");
+                          //   echo("<p class='card-text'>");
+                          //   echo($row['Content_Type_Description']); 
+                          // echo("</p>");
+                          echo("
+                            <button type='button' class='btn btn-outline-dark'> View More </button>
+                          </div>
+                        </div>
+                      </div>");
+              }
+            ?>
+        </div>
+    </div>
       </div>
     <!-- /#page-content-wrapper -->
 

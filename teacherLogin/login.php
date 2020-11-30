@@ -1,3 +1,40 @@
+<?php
+	require_once "../connections.php";
+	session_start();
+
+	if(isset($_POST["email"])&&isset($_POST["password"]))
+	{
+		unset($_SESSION["account"]);
+		$getTeacherLoginQuery = "SELECT * FROM teacher_login";
+		$getTeacherLogin = $pdo->query($getTeacherLoginQuery);
+		while($row = $getTeacherLogin->fetch(PDO::FETCH_ASSOC))
+		{
+			if($row["Email_ID"]==$_POST["email"])
+			{
+				if($row["Pass_word"]==$_POST["password"])
+				{
+					$_SESSION["account"]==$_POST["email"];
+					$_SESSION["success"]=="Logged in";
+					header('Location: teacherNotes.php');
+					return;
+				}
+				else
+				{
+					$_SESSION["error"]=="Incorrect Password";
+					header('Location: login.php');
+					return;
+				}
+			}
+			else
+			{
+				$_SESSION["error"]=="This user is not registered.";
+				header('Location: login.php');
+				return;
+			}
+		}
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +52,7 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="img/logo.png" alt="logo">
+						<img src="../img/MVP.png" alt="logo" height="50px">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
@@ -30,12 +67,11 @@
 								</div>
 
 								<div class="form-group">
-									<label for="password">Password
-										<a href="forgotPassword.php" class="float-right">
-											Forgot Password?
-										</a>
-									</label>
+									<label for="password">Password</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<a href="forgotPassword.php" class="float-right">
+											 Forgot Password?
+										</a>
 								    <div class="invalid-feedback">
 								    	Password is required
 							    	</div>
@@ -46,6 +82,18 @@
 										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
 										<label for="remember" class="custom-control-label">Remember Me</label>
 									</div>
+								</div>
+
+								<div class="form-group">
+									<?php 
+
+										if(isset($_SESSION["error"]))
+										{
+											echo('<p style="color:red">'.$_SESSION["error"]."</p>");
+											unset($_SESSION['error']);
+										}
+
+									?>
 								</div>
 
 								<div class="form-group m-0">

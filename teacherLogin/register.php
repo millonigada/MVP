@@ -1,3 +1,56 @@
+<?php
+require_once "../connections.php";
+session_start();
+
+if ( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['empID']) && isset($_POST['mobileNo']) && isset($_POST['password'])) {
+
+    // Data validation
+    if ( strlen($_POST['name']) < 1 || strlen($_POST['password']) < 1) {
+        $_SESSION['error'] = 'Missing data';
+        echo $_SESSION['error'];
+        header("Location: register.php");
+        return;
+    }
+
+    if ( strpos($_POST['email'],'@') === false ) {
+        $_SESSION['error'] = 'Bad data';
+        echo $_SESSION['error'];
+        header("Location: register.php");
+        return;
+    }
+
+    $insertIntoTeacherRegisterQuery = "INSERT INTO teacher_register (Emp_ID, Name, Designation, Email_ID, Mobile_No) VALUES (:empID, :name, :designation, :email, :mobileNo)";
+    $insertIntoTeacherRegister = $pdo->prepare($insertIntoTeacherRegisterQuery);
+    $insertIntoTeacherRegister->execute(array(
+        ':empID' => $_POST['empID'],
+        ':name' => $_POST['name'],
+        ':designation' => $_POST['designation'],
+        ':email' => $_POST['email'],
+        ':mobileNo' => $_POST['mobileNo']));
+
+    $getTeachIDQuery = "SELECT Teach_ID FROM teacher_register WHERE Email_ID = :email";
+    $getTeachID = $pdo->prepare($getTeachIDQuery);
+    $getTeachID->execute(array(':email' => $_POST['email']));
+    $teachID = $getTeachID->fetch(PDO::FETCH_ASSOC);
+
+    $insertIntoTeacherLoginQuery = "INSERT INTO teacher_login (Teach_ID, Email_ID, Password) VALUES (:teachID, :email, :password)";
+    $insertIntoTeacherLogin = $pdo->prepare($insertIntoTeacherLoginQuery);
+    $insertIntoTeacherLogin->execute(array(
+        ':teachID' => $teachID,
+        ':email' => $_POST['email'],
+        ':password' => $_POST['passWord']));
+
+    $_SESSION['success'] = 'Record Added';
+    header( 'Location: login.php' );
+    return;
+}
+
+// Flash pattern
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +67,7 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="img/logo.png" alt="bootstrap 4 login page">
+						<img src="img/MVP.png" alt="bootstrap 4 login page">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
@@ -43,7 +96,7 @@
 
 								<div class="form-group">
 									<label for="mobileNo">Mobile Number</label>
-									<input id="mobileNo" type="number" class="form-control" name="mobileNo" required>
+									<input id="mobileNo" type="text" class="form-control" name="mobileNo" required>
 									<div class="invalid-feedback">
 										Please enter appropriate Mobile Number
 									</div>
@@ -59,9 +112,27 @@
 
 								<div class="form-group">
 									<label for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="passWord" required data-eye>
 									<div class="invalid-feedback">
 										Password is required
+									</div>
+								</div>
+
+								<div class="form-group">
+									Select Your Subjects
+								</div>
+
+								<div class="form-group">
+									<div class="custom-checkbox custom-control">
+										<input id="dataStructures" type="checkbox" class="custom-control-input" name="dataStructures" required="">
+										<label for="dataStructures" class="custom-control-label">Data Structures</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="custom-checkbox custom-control">
+										<input id="computerGraphics" type="checkbox" class="custom-control-input" name="computerGraphics" required="">
+										<label for="computerGraphics" class="custom-control-label">Computer Graphics</label>
 									</div>
 								</div>
 

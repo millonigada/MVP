@@ -1,0 +1,33 @@
+body{
+    background-colour: #17a2b8 !important;
+}
+
+.main-row{
+    margin-top: 10%;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.card img{
+    transform:translateY(-40px);
+    border-radius: 15px;
+    z-index:1;
+    
+}
+
+.card .card-body{
+    visibility: hidden;
+    transform:translateY(-150px);
+    height: 0px;
+    
+}
+
+.card:hover .card-body{
+    visibility: visible;
+    transform: translateY(-40px);
+    height: auto;
+    transition: .10s;
+}
+
