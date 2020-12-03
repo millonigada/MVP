@@ -1,6 +1,45 @@
 <?php 
   require_once "../connections.php";
   //unset($_SESSION["success"]);
+
+  if(isset($_POST['upload']))
+  {
+    $file = $_FILES['file'];
+
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+
+    $fileExt = explode('.',$fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    if($fileActualExt == 'pdf')
+    {
+      if($fileError === 0)
+      {
+        if($fileSize<5000000)
+        {
+          $fileDestination = '../notes/'.$fileName;
+          move_uploaded_file($fileTmpName, $fileDestination);
+          echo "Upload success";
+        }
+        else
+        {
+          echo "This file is too large. Please make sure its 5MB or less.";
+        }
+      }
+      else
+      {
+        echo "There was an error while uploading this file.";
+      }
+    }
+    else
+    {
+      echo "Please upload a pdf file";
+    }
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,37 +113,10 @@
 
       <div class="container-fluid">
         <h1 class="mt-4">Teacher Notes</h1>
-        <div class="container">
-        <div class="row main-row">
-            <?php 
-
-              $getModuleQuery = "SELECT * FROM module";
-              $getModule = $pdo->query($getModuleQuery);
-              while($row = $getModule->fetch(PDO::FETCH_ASSOC))
-              {
-                    $moduleImg = '../img/module'.$row['Module_ID'].'.jpg';
-
-                    echo ("<div class='col-md-4 mb-5'>");
-                      echo("<div class='card p-3' style='width: 18rem'>");
-                        echo('<img src="'.$moduleImg.'" '); 
-
-                        echo( "alt='stock photo' class='card-img-top shadow bg-white rounded'>");
-                        echo("<div class='card-body'>");
-                          echo("<h5 class='card-title'>"); 
-                            echo $row['Module_Name']; 
-                          echo ("</h5>");
-                          //   echo("<p class='card-text'>");
-                          //   echo($row['Content_Type_Description']); 
-                          // echo("</p>");
-                          echo("
-                            <button type='button' class='btn btn-outline-dark'> View More </button>
-                          </div>
-                        </div>
-                      </div>");
-              }
-            ?>
-        </div>
-    </div>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file">
+          <button type="submit" name="upload">Upload</button>
+        </form>
       </div>
     <!-- /#page-content-wrapper -->
 

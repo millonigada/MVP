@@ -1,5 +1,14 @@
 <?php 
-  require_once "connections.php"
+  require_once "connections.php";
+
+  $subjectID=1;
+
+  if(isset($_GET['subject']))
+  {
+    $subjectID=$_GET['ID'];
+    echo $subjectID;
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,8 +45,10 @@
           $getSubject = $pdo->query($getSubjectQuery);
           while($row = $getSubject->fetch(PDO::FETCH_ASSOC))
           {
-            echo ('<a href="#" class="list-group-item list-group-item-action bg-light">');
-            echo ($row['Subject_Name']);
+            $thisSubjectID = $row['Subject_ID'];
+            $subjectName = $row['Subject_Name'];
+            echo ('<a href="notes.php?subject='.$subjectName.'&ID='.$thisSubjectID.'" class="list-group-item list-group-item-action bg-light">');
+            echo ($subjectName);
             echo ('</a>');
           }
 
@@ -75,7 +86,7 @@
         <div class="row main-row">
             <?php 
 
-              $getModuleQuery = "SELECT * FROM module";
+              $getModuleQuery = "SELECT * FROM module WHERE Subject_ID = ".$subjectID;
               $getModule = $pdo->query($getModuleQuery);
               while($row = $getModule->fetch(PDO::FETCH_ASSOC))
               {
@@ -94,7 +105,7 @@
                           //   echo($row['Content_Type_Description']); 
                           // echo("</p>");
                           echo("
-                            <button type='button' class='btn btn-outline-dark'> View More </button>
+                            <button type='button' class='btn btn-outline-dark'><a href='#'> View More </a></button>
                           </div>
                         </div>
                       </div>");
@@ -112,6 +123,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/selector.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
