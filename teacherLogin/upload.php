@@ -1,6 +1,56 @@
 <?php 
   require_once "../connections.php";
+  session_start();
   //unset($_SESSION["success"]);
+
+  // if(isset($_SESSION['account']))
+  // {
+  //   unset($_SESSION['success']);
+  //   $teachID=$_SESSION['accountID'];
+  //   //echo $teachID;
+  //   $getContentModuleIDQuery = "SELECT Module_ID FROM content";
+  //   $getContentModuleID = $pdo->query($getContentModuleIDQuery);
+  //   $existingModules = array();
+  //   while($row = $getContentModuleID->fetch(PDO::FETCH_ASSOC))
+  //   {
+  //     array_push($existingModules, $row['Module_ID']);
+  //   }
+
+  //   print_r($existingModules);
+
+  //   $getSubjectTeacherQuery = "SELECT * FROM join_subject_teacher WHERE Teach_ID = ".$teachID;
+  //   $getSubjectTeacher = $pdo->query($getSubjectTeacherQuery);
+  //   $mySubjects = array();
+  //   while($row = $getSubjectTeacher->fetch(PDO::FETCH_ASSOC))
+  //   {
+  //     array_push($mySubjects, $row['Subject_ID']);
+  //   }
+
+  //   print_r($mySubjects);
+  // }
+
+    //$teachID=$_SESSION['accountID'];
+  $teachID=1;
+    //echo $teachID;
+    $getContentModuleIDQuery = "SELECT Module_ID FROM content";
+    $getContentModuleID = $pdo->query($getContentModuleIDQuery);
+    $existingModules = array();
+    while($row = $getContentModuleID->fetch(PDO::FETCH_ASSOC))
+    {
+      array_push($existingModules, $row['Module_ID']);
+    }
+
+    //print_r($existingModules);
+
+    $getSubjectTeacherQuery = "SELECT * FROM join_subject_teacher WHERE Teach_ID = ".$teachID;
+    $getSubjectTeacher = $pdo->query($getSubjectTeacherQuery);
+    $mySubjects = array();
+    while($row = $getSubjectTeacher->fetch(PDO::FETCH_ASSOC))
+    {
+      array_push($mySubjects, $row['Subject_ID']);
+    }
+
+    //print_r($mySubjects);
 
   if(isset($_POST['upload']))
   {
@@ -22,6 +72,16 @@
         {
           $fileDestination = '../notes/'.$fileName;
           move_uploaded_file($fileTmpName, $fileDestination);
+
+          $insertIntoContentQuery="INSERT INTO content (Content_Location, Content_Type_ID, Module_ID, Teach_ID) VALUES (:contentLocation, :contentTypeID, :moduleID, :teachID)";
+          $insertIntoContent = $pdo->prepare($insertIntoContentQuery);
+          $insertIntoContent->execute(array(
+            
+            'contentLocation' => $fileName,
+            'contentTypeID' => 1,
+            'moduleID' => $_POST['selectModule'],
+            ':teachID' => $teachID,));
+          
           echo "Upload success";
         }
         else
@@ -64,78 +124,62 @@
 
 <body>
 
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img src="../img/MVP.png" alt="MVP Logo" height="50px"></div>
-      <div class="list-group list-group-flush">
-        <a href="upload.php" class="list-group-item list-group-item-action bg-light">Upload</a>
-        <?php 
-
-          $getSubjectQuery = "SELECT * FROM subject";
-          $getSubject = $pdo->query($getSubjectQuery);
-          while($row = $getSubject->fetch(PDO::FETCH_ASSOC))
-          {
-            echo ('<a href="#" class="list-group-item list-group-item-action bg-light">');
-            echo ($row['Subject_Name']);
-            echo ('</a>');
-          }
-
-        ?>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav navbar-left ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-            <li class="nav-item" id="menu-toggle"><a class="nav-link" href="#">Notes</a></li>
-            <li class="nav-item"><a class="nav-link" href="resources.php">Resources</a></li>
-            <li class="nav-item"><a class="nav-link" href="software.php">Software</a></li>
-            <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
-          </ul>
-          <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-          </ul>
-        </div>
-      </nav>
-
       <div class="container-fluid">
         <h1 class="mt-4">Teacher Notes</h1>
         <form action="upload.php" method="POST" enctype="multipart/form-data">
-          <input type="file" name="file">
+          <label for="selectModule">Choose a Module:</label>
+          <select name="selectModule">
+            <?php
+              $getModuleQuery = "SELECT * FROM module";
+              $getModule = $pdo->query($getModuleQuery);
+              $allModules = array();
+              $availableModules = array();
+              while($row = $getModule->fetch(PDO::FETCH_ASSOC))
+              {
+                array_push($allModules, $row['Module_ID']);
+              }
+
+              while($row = $getModule->fetch(PDO::FETCH_ASSOC))
+              {
+                if(in_array($row['Subject_ID'],$mySubjects))
+                {
+                  if(!(in_array($row['Module_ID'], $existingModules)))
+                  {
+                    $availableModules[$row['Module_ID']] = $row['Module_Name'];
+                  }
+                }
+              }
+              // print_r($availableModules);
+
+              foreach ($availableModules as $key => $value) {
+                # code...
+                echo ('<option value="'.$key.'">'.$value.'</option>');
+              }
+            ?>
+            <option value="1">Introduction to Data Structures</option>
+            <option value="2">Stack and Queues</option>
+            <option value="3">Linked List</option>
+            <option value="4">Trees</option>
+            <option value="5">Graphs</option>
+            <option value="6">Searching Techniques</option>
+            <option value="1">Introduction and Overview of Graphics System</option>
+            <option value="2">Output Primitives</option>
+            <option value="3">Two Dimensional Geometric Transformations</option>
+            <option value="4">Two-Dimensional Viewing and Clipping</option>
+            <option value="5">Three Dimensional Geometric Transformations, Curves and Fractal Generation</option>
+            <option value="6">Visible Surface Detection and Animation</option>
+          </select>
+          <br>
+          <input type="file" name="file"><br>
           <button type="submit" name="upload">Upload</button>
         </form>
+        <a href="logout.php">Logout</a>
       </div>
-    <!-- /#page-content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
 </body>
-
 </html>

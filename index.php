@@ -14,14 +14,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/MVP1.css" rel="stylesheet">
+  <link href="css/indexstyle.css" rel="stylesheet">
 
 </head>
 
 <body>
-
+  <body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
   <div class="d-flex" id="wrapper">
-
     <!-- Sidebar -->
     <!-- <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">MVP Logo</div>
@@ -50,14 +49,23 @@
             <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="teacherLogin/login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="teacherLogin/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">This is our homepage</h1>
-        <p>Information on how to navigate through the website</p>
+
+        <div class="container col-lg-8">
+              <h1 class="mt-4" align="center">Welcome to My Virtual Professor</h1>
+        </div>
+        <div class="container col-lg-8">
+        <p>MVP or My Virtual Professor is a place where you will find solutions to all your problems throught your engineering journey. We at MVP know that it is difficult to find resources like text books, reference books or anything else online, specially in this pandemic situation. <br> Our website is where you can find notes, video lecture links and various links for different softwares and how to download them, which are essential for your coding journey. For time being we have only included second year subjects : Computer graphics and Data structures to our website but we hope to include many more modules to our page too. <br>
+            <img class="circular-image" src="https://cdn.thewirecutter.com/wp-content/uploads/2020/01/sleepweek-lowres-1145985262-630x420.jpg" alt="books">
+            <img class="circular-image" src="https://media.istockphoto.com/vectors/programming-code-application-window-vector-id1124838925?k=6&m=1124838925&s=612x612&w=0&h=TbuwIMLPlZxN9jbuTcJanRwX33tkgNF7_PiIPvpPVm4=" alt="coding" >
+            <img class="circular-image" src="https://cdn.optinmonster.com/wp-content/uploads/2019/10/best-instagram-video-editing-tools-2.png" alt="video"> <br>
+          There are too many websites on the interenet which provide notes and video lectures but the problem with these websites is that you don't know which source to trust. We at MVP have a group of selected faculty members who are ewell experienced in their field and are there to help you out in your academics. Unlike certain websites, MVP is a free website which is aimed at progress of the students so that they can learn and improve their skills which are necessary in the real world. <br> For more information or queries on our website : <br> Write to us at  <p style="color: #ffa62b";> mvp893233@gmail.com </p> </p>
+      </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->

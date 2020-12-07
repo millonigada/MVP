@@ -1,0 +1,22 @@
+p{
+	color: rgb(255,255,255);
+	font-family: "Monaco", monospace;
+	font-size: 25px;
+	font-weight: 200;
+}
+
+h1{
+	color: rgb(219,100,0);
+	font-family: "Lucida Handwriting", cursive;
+	font-weight: 300;
+}
+
+.circular-image{
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+}
+
+/*#navbarSupportedContent{
+	color: rgb(218,112,214);
+}*/

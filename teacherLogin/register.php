@@ -19,6 +19,10 @@ if ( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['empID']) &
         return;
     }
 
+    // if (isset($_POST['dataStructures'])) {
+    // 	$dataStructures = 
+    // }
+
     $insertIntoTeacherRegisterQuery = "INSERT INTO teacher_register (Emp_ID, Name, Designation, Email_ID, Mobile_No) VALUES (:empID, :name, :designation, :email, :mobileNo)";
     $insertIntoTeacherRegister = $pdo->prepare($insertIntoTeacherRegisterQuery);
     $insertIntoTeacherRegister->execute(array(

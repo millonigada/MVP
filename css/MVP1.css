@@ -42,3 +42,9 @@
     margin-left: -15rem;
   }
 }
+
+#chatbot {
+  /*width: 100%;*/
+  align-items: center;
+  margin: auto;
+}

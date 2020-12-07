@@ -66,7 +66,7 @@
             <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="teacherLogin/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </nav>
@@ -97,7 +97,7 @@
                             echo($row['Content_Type_Description']); 
                           echo("</p>");
                           echo("
-                            <button type='button' class='btn btn-outline-dark'> View More </button>
+                            <a href='displayResources.php'><button type='button' class='btn btn-outline-dark'> View More </button></a>
                           </div>
                         </div>
                       </div>");

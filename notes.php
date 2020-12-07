@@ -6,7 +6,19 @@
   if(isset($_GET['subject']))
   {
     $subjectID=$_GET['ID'];
-    echo $subjectID;
+    //echo $subjectID;
+  }
+
+  if(isset($_GET['subject'])&&isset($_GET['module']))
+  {
+    $mID = $_GET['module'];
+    $getContentQuery = "SELECT * FROM content WHERE Module_ID = ".$mID;
+    $getContent = $pdo->query($getContentQuery);
+    while($row = $getContent->fetch(PDO::FETCH_ASSOC))
+    {
+      echo ('<iframe class="mt-4" src="notes/'.$row['Content_Location'].'" style="width: 1200px; height: 1000px;" frameborder="0">');
+      echo ('</iframe>');
+    }
   }
 
 ?>
@@ -75,7 +87,7 @@
             <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Faculty Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </nav>
@@ -91,6 +103,7 @@
               while($row = $getModule->fetch(PDO::FETCH_ASSOC))
               {
                     $moduleImg = 'img/module'.$row['Module_ID'].'.jpg';
+                    $moduleID = $row['Module_ID'];
 
                     echo ("<div class='col-md-4 mb-5'>");
                       echo("<div class='card p-3' style='width: 18rem'>");
@@ -105,7 +118,7 @@
                           //   echo($row['Content_Type_Description']); 
                           // echo("</p>");
                           echo("
-                            <button type='button' class='btn btn-outline-dark'><a href='#'> View More </a></button>
+                            <a href='notes.php?subject=".$subjectName."&ID=".$thisSubjectID."&module=".$moduleID."'><button type='button' class='btn btn-outline-dark'> View More </button></a>
                           </div>
                         </div>
                       </div>");

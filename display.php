@@ -74,35 +74,23 @@
       <div class="container-fluid">
         <div class="container">
         <div class="row main-row">
-            <?php 
-
-              $getSoftwareTypeQuery = "SELECT * FROM software_type";
-              $getSoftwareType = $pdo->query($getSoftwareTypeQuery);
-              while($row = $getSoftwareType->fetch(PDO::FETCH_ASSOC))
-              {
-                    $softwareTypeImg = 'img/softwareType'.$row['Software_Type_ID'].'.jpg';
-
-                    echo ("<div class='col-md-4 mb-5'>");
-                      echo("<div class='card p-3' style='width: 18rem'>");
-                        echo('<img src="'.$softwareTypeImg.'" '); 
-
-                        echo( "alt='stock photo' class='card-img-top shadow bg-white rounded'>");
-    
-                        echo("<div class='card-body'>");
-                          
-                          //   echo("<p class='card-text'>");
-                          //   echo($row['Content_Type_Description']); 
-                          // echo("</p>");
-                          echo("<h5 class='card-title'>"); 
-                            echo $row['Software_Type']; 
-                          echo ("</h5>");
-                          echo("
-                            <a href='displaySoftware.php'><button type='button' class='btn btn-outline-dark'> View More </button></a>
-                          </div>
-                        </div>
-                      </div>");
-              }
-            ?>
+            <h1>Languages</h1>
+            <br>
+            <ul style="list-style-type: none">
+              <li><h3>PHP</h3></li>
+              <li>It is a general purpose scripting language, especially suited to web development. It is a flexible and useful programming language, used extensively for building out web applications, websites, cloud computing and even machine learning.</li>
+              <li><a href="https://www.youtube.com/watch?v=qVU3V0A05k8&list=PL0eyrZgxdwhwBToawjm9faF1ixePexft-">PHP Tutorial</li>
+              <li><h3>Javascript</h3></li>
+              <li>Often abbreviated as JS, it is a programming language that conforms to the ECMAScript specification. It is high-level, often just-in-time compiled, and multi-paradigm.</li>
+              <li><a href="https://www.youtube.com/watch?v=qoSksQ4s_hg&list=PL4cUxeGkcC9i9Ae2D9Ee1RvylH38dKuET">JavaScript Tutorial</a></li>
+              <li><h3>Ruby</h3></li>
+              <li>Ruby is a dynamic open-source programming language with a focus on simplicity and productivity. It is most used for coding web applications.</li>
+              <li><h3>Python</h3></li>
+              <li>Perhaps one of the most versatile languages ever, it is used for a whole host of things ranging from web development(using the DJango Framework), to machine learning, data science etc</li>
+              <li><a href="https://www.python.org/downloads/">Download Python</a></li>
+              <li><h3>Java</h3></li>
+              <li></li>
+            </ul>
         </div>
     </div>
       </div>

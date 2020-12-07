@@ -1,0 +1,94 @@
+body{
+    max-width: 1000px;
+    margin: auto;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 16px;
+}
+
+div{
+    border: none;
+    margin-top: 5px;
+    padding: 0px;  
+}
+
+.box{
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+.list_box{
+    width: 100%;
+    overflow: hidden;
+}
+#image{
+    float: left;
+    padding: 20px 20px 20px 20px;
+}
+#identity{
+    overflow: auto;
+}
+#background-image{
+    background-image: url("img/bat_cover.jpg");
+    height: 350px;
+    padding-top: 50px;
+    color: #fff;
+    margin-top: 25px;
+}
+#content{
+    background-color: rgba(0,0,0,0.7);
+    max-width: 450px;
+    padding: 30px 20px;
+    margin-top: 50px;
+}
+.thumbnail{
+    display: inline-block;
+    height: auto;
+    padding: 4px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #a4a4a4;
+    text-align: center;
+    color: #666;
+    margin: 50px;
+}
+table{
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    text-align: left;
+    background-color: #ececec;
+}
+th,td{
+    padding: 15px;
+    border: 1px solid #a4a4a4;
+    height: 30px;
+}
+#nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navcomponents{
+    list-style-type: none;
+    padding: 5px 0px;
+}
+
+li a{
+    display: block;
+    color: #666;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: right;
+}
+.logo{
+    float: left;
+    height: 50px;
+    padding: 5px 0px;
+}
+#header{
+    padding: 5px 0px;
+    border_bottom: 1px solid;
+}

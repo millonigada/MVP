@@ -13,10 +13,11 @@
 			{
 				if($row["Pass_word"]==$_POST["password"])
 				{
-					$_SESSION["account"]==$_POST["email"];
+					$_SESSION["account"]==$row["Email_ID"];
+					$_SESSION['accountID']==$row['Teach_ID'];
 					$_SESSION["success"]=="Logged in";
-					header('Location: teacherNotes.php');
-					return;
+					header('Location: upload.php');
+					exit();
 				}
 				else
 				{
