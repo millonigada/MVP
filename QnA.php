@@ -8,18 +8,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MVP Home</title>
+  <title>MVP QnA</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 
 </head>
 
 <body>
-
+  <body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -54,17 +56,24 @@
           </ul>
         </div>
       </nav>
-
+      <div><br></div>
       <div class="container-fluid" id="chatbot">
-        <h1 class="mt-4">Looks like you need help</h1>
-        <p>Our chatbot will guide you through any questions you might have for the website</p>
+        <div class="row">
+          <div class="col-2" style="text-align: center"><img class="image" src="img/QnA.png" alt="intro"></div>
+          <div class="col-8 whole__block" style="border: groove; border-radius: 25px;">
+            <h3 class="mt-4">Looks like you need help</h3>
+            <p>Our chatbot will guide you through any questions you might have for the website</p>
+          </div>
+        </div>
       </div>
-      <iframe
+      <div><br></div>
+      <p align="center"><iframe
         allow="microphone;"
         width="800"
-        height="600"
+        height="550"
+
         src="https://console.dialogflow.com/api-client/demo/embedded/7acc0959-8460-4c72-b048-5d6f0cb04e45">
-      </iframe>
+      </iframe></p>
     </div>
     <!-- /#page-content-wrapper -->
 
