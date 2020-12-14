@@ -30,7 +30,20 @@
   // }
 
     //$teachID=$_SESSION['accountID'];
-  $teachID=1;
+    if(isset($_GET['ID'])&&isset($_GET['Name']))
+    {  
+      $teachID=$_GET['ID'];
+      $teachName=$_GET['Name'];
+    }
+    else if(isset($_POST['ID'])&&isset($_POST['Name']))
+    {
+      $teachID=$_POST['ID'];
+      $teachName=$_POST['Name'];
+    }
+    else
+    {
+      echo "Please <a href='login.php'>login</a> first";
+    }
     //echo $teachID;
     $getContentModuleIDQuery = "SELECT Module_ID FROM content";
     $getContentModuleID = $pdo->query($getContentModuleIDQuery);
@@ -73,16 +86,18 @@
           $fileDestination = '../notes/'.$fileName;
           move_uploaded_file($fileTmpName, $fileDestination);
 
-          $insertIntoContentQuery="INSERT INTO content (Content_Location, Content_Type_ID, Module_ID, Teach_ID) VALUES (:contentLocation, :contentTypeID, :moduleID, :teachID)";
+          $insertIntoContentQuery="INSERT INTO content (Content_Location, Content_Description, Content_Type_ID, Module_ID, Teach_ID) VALUES (:contentLocation, :contentDescription, :contentTypeID, :moduleID, :teachID)";
           $insertIntoContent = $pdo->prepare($insertIntoContentQuery);
           $insertIntoContent->execute(array(
             
             'contentLocation' => $fileName,
+            'contentDescription' => $_POST['contentDescription'],
             'contentTypeID' => 1,
             'moduleID' => $_POST['selectModule'],
             ':teachID' => $teachID,));
           
           echo "Upload success";
+          header('Location: upload.php?ID='.$teachID.'&Name='.$teachName);
         }
         else
         {
@@ -117,17 +132,66 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/MVP1.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../css/rstyle.css">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <style>
+    h1{
+  color: rgb(212,175,55);
+  font-family: Nunito;
+  font-weight: 300;
+    }
+
+    h3{
+  color: rgb(219,100,0);
+  font-family: Nunito;
+  font-weight: 300;
+    }
+
+    p{
+  color: rgb(255,255,255);
+  font-family: "Monaco", monospace;
+  font-size: 20px;
+  font-weight: 200;
+    }
+
+    .upload-buttons{
+      padding: 4px;
+      background-color: rgb(212,175,55);
+      font-size: 16px;
+      border-radius: 8px;
+      color: black;
+      border: 2px solid rgb(219,100,0); 
+    }
+
+    label{
+      color: white;
+    }
+  </style>
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
       <div class="container-fluid">
-        <h1 class="mt-4">Teacher Notes</h1>
+        <?php 
+
+          echo ("<h1>Welcome, ".$teachName."</h1>");
+
+        ?>
+        <div style="border: groove; border-radius: 25px; padding: 10px">
+        <h3>Previously uploaded notes:</h3><br>
+        <?php
+          $getContentQuery = "SELECT Content_Location FROM content WHERE Teach_ID =".$teachID;
+          $getContent = $pdo->query($getContentQuery);
+          while ($row = $getContent->fetch(PDO::FETCH_ASSOC)) {
+            echo ("<p>".$row['Content_Location']."</p>");
+          }
+        ?>
+      </div>
+      <br>
+        <h3>Upload notes here</h3>
         <form action="upload.php" method="POST" enctype="multipart/form-data">
-          <label for="selectModule">Choose a Module:</label>
+          <label for="selectModule" style="color: white">Choose a Module:</label>
           <select name="selectModule">
             <?php
               $getModuleQuery = "SELECT * FROM module";
@@ -170,8 +234,12 @@
             <option value="6">Visible Surface Detection and Animation</option>
           </select>
           <br>
-          <input type="file" name="file"><br>
-          <button type="submit" name="upload">Upload</button>
+          <label for="contentDescription">Description:</label>
+          <textarea name="contentDescription" cols="40"></textarea><br>
+          <input class="upload-buttons" style="margin-top: 4px;" type="file" name="file"><br><br>
+          <button class="upload-buttons" style="margin-top: 4px;" type="submit" name="upload">Upload</button>
+          <input type="hidden" name="ID" value="<?php echo $teachID; ?>"/>
+          <input type="hidden" name="Name" value="<?php echo $teachName; ?>"/>
         </form>
         <a href="logout.php">Logout</a>
       </div>

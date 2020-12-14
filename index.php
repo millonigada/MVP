@@ -61,7 +61,7 @@
         </div>
         <div><p> <br> </p></div>
         <div class="row">
-          <div class="col-3" style="text-align: center"><img class="circular-image" src="img/module6.jpg" alt="intro"></div>
+          <div class="col-3" style="text-align: center"><img class="circular-image" src="img/MVP.png" alt="intro"></div>
           <div class="col-8 whole__block" style="border: groove; border-radius: 25px;">
             <h3>About Us:<br></h3>
             <p>MVP or My Virtual Professor is a place where you will find solutions to all your problems throught your engineering journey. We at MVP know that it is difficult to find resources like text books, reference books or anything else online, specially in this pandemic situation. <br> Our website is where you can find notes, video lecture links and various links for different softwares and how to download them, which are essential for your coding journey.</p>

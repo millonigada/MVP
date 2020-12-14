@@ -20,11 +20,38 @@
 
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/rstyle.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <style type="text/css">
+    p{
+  color: rgb(255,255,255);
+  font-family: "Monaco", monospace;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+h1{
+  color: rgb(212,175,55);
+  font-family: Nunito;
+  font-weight: 300;
+}
+
+h3{
+  color: rgb(219,100,0);
+  font-family: Nunito;
+  font-weight: 300;
+}
+
+.my-box{
+  border: groove; 
+  border-radius: 25px;
+  padding: 10px;
+  margin: 10px;
+}
+  </style>
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
   <div class="d-flex" id="wrapper">
 
@@ -77,17 +104,33 @@
             <h1>Languages</h1>
             <br>
             <ul style="list-style-type: none">
-              <li><h3>PHP</h3></li>
-              <li>It is a general purpose scripting language, especially suited to web development. It is a flexible and useful programming language, used extensively for building out web applications, websites, cloud computing and even machine learning.</li>
-              <li><a href="https://www.youtube.com/watch?v=qVU3V0A05k8&list=PL0eyrZgxdwhwBToawjm9faF1ixePexft-">PHP Tutorial</a></li>
-              <li><h3>Javascript</h3></li>
-              <li>Often abbreviated as JS, it is a programming language that conforms to the ECMAScript specification. It is high-level, often just-in-time compiled, and multi-paradigm.</li>
-              <li><a href="https://www.youtube.com/watch?v=qoSksQ4s_hg&list=PL4cUxeGkcC9i9Ae2D9Ee1RvylH38dKuET">JavaScript Tutorial</a></li>
-              <li><h3>Ruby</h3></li>
-              <li>Ruby is a dynamic open-source programming language with a focus on simplicity and productivity. It is most used for coding web applications.</li>
-              <li><h3>Python</h3></li>
-              <li>Perhaps one of the most versatile languages ever, it is used for a whole host of things ranging from web development(using the DJango Framework), to machine learning, data science etc</li>
-              <li><a href="https://www.python.org/downloads/">Download Python</a></li>
+              <li>
+                <div class="my-box">
+                  <h3>PHP</h3>
+                  <p>It is a general purpose scripting language, especially suited to web development. It is a flexible and useful programming language, used extensively for building out web applications, websites, cloud computing and even machine learning.</p>
+                  <a href="https://www.youtube.com/watch?v=qVU3V0A05k8&list=PL0eyrZgxdwhwBToawjm9faF1ixePexft-">PHP Tutorial</a>
+                </div>
+              </li>
+              <li>
+                <div class="my-box">
+                  <h3>Javascript</h3>
+                  <p>Often abbreviated as JS, it is a programming language that conforms to the ECMAScript specification. It is high-level, often just-in-time compiled, and multi-paradigm.</p>
+                  <a href="https://www.youtube.com/watch?v=qoSksQ4s_hg&list=PL4cUxeGkcC9i9Ae2D9Ee1RvylH38dKuET">JavaScript Tutorial</a>
+                </div>
+              </li>
+              <li>
+                <div class="my-box">
+                  <h3>Ruby</h3>
+                  <p>Ruby is a dynamic open-source programming language with a focus on simplicity and productivity. It is most used for coding web applications.</p>
+                </div>
+              </li>
+              <li>
+                <div class="my-box">
+                  <h3>Python</h3>
+                  <p>Perhaps one of the most versatile languages ever, it is used for a whole host of things ranging from web development(using the DJango Framework), to machine learning, data science etc</p>
+                  <a href="https://www.python.org/downloads/">Download Python</a>
+                </div>
+              </li>
             </ul>
         </div>
     </div>

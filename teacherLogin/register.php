@@ -23,26 +23,27 @@ if ( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['empID']) &
     // 	$dataStructures = 
     // }
 
-    $insertIntoTeacherRegisterQuery = "INSERT INTO teacher_register (Emp_ID, Name, Designation, Email_ID, Mobile_No) VALUES (:empID, :name, :designation, :email, :mobileNo)";
+    $insertIntoTeacherRegisterQuery = "INSERT INTO teacher_register (Emp_ID, Name, Designation, Email_ID, Mobile_No, Pass_word) VALUES (:empID, :name, :designation, :email, :mobileNo, :passWord)";
     $insertIntoTeacherRegister = $pdo->prepare($insertIntoTeacherRegisterQuery);
     $insertIntoTeacherRegister->execute(array(
         ':empID' => $_POST['empID'],
         ':name' => $_POST['name'],
         ':designation' => $_POST['designation'],
         ':email' => $_POST['email'],
-        ':mobileNo' => $_POST['mobileNo']));
+        ':mobileNo' => $_POST['mobileNo'],
+    	':passWord' => $_POST['passWord']));
 
-    $getTeachIDQuery = "SELECT Teach_ID FROM teacher_register WHERE Email_ID = :email";
-    $getTeachID = $pdo->prepare($getTeachIDQuery);
-    $getTeachID->execute(array(':email' => $_POST['email']));
-    $teachID = $getTeachID->fetch(PDO::FETCH_ASSOC);
+    // $getTeachIDQuery = "SELECT Teach_ID FROM teacher_register WHERE Email_ID = :email";
+    // $getTeachID = $pdo->prepare($getTeachIDQuery);
+    // $getTeachID->execute(array(':email' => $_POST['email']));
+    // $teachID = $getTeachID->fetch(PDO::FETCH_ASSOC);
 
-    $insertIntoTeacherLoginQuery = "INSERT INTO teacher_login (Teach_ID, Email_ID, Password) VALUES (:teachID, :email, :password)";
-    $insertIntoTeacherLogin = $pdo->prepare($insertIntoTeacherLoginQuery);
-    $insertIntoTeacherLogin->execute(array(
-        ':teachID' => $teachID,
-        ':email' => $_POST['email'],
-        ':password' => $_POST['passWord']));
+    // $insertIntoTeacherLoginQuery = "INSERT INTO teacher_login (Teach_ID, Email_ID, Password) VALUES (:teachID, :email, :password)";
+    // $insertIntoTeacherLogin = $pdo->prepare($insertIntoTeacherLoginQuery);
+    // $insertIntoTeacherLogin->execute(array(
+    //     ':teachID' => $teachID,
+    //     ':email' => $_POST['email'],
+    //     ':password' => $_POST['passWord']));
 
     $_SESSION['success'] = 'Record Added';
     header( 'Location: login.php' );

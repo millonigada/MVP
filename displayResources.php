@@ -1,7 +1,7 @@
 <?php 
   
   require_once "connections.php";
-
+  $subjectID = $_GET['Subject'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +21,12 @@
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/rstyle.css">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
   <div class="d-flex" id="wrapper">
 
@@ -34,12 +36,12 @@
       <div class="list-group list-group-flush">
         <?php 
 
-          $getStreamQuery = "SELECT * FROM stream";
-          $getStream = $pdo->query($getStreamQuery);
-          while($row = $getStream->fetch(PDO::FETCH_ASSOC))
+          $getSubjectQuery = "SELECT * FROM subject";
+          $getSubject = $pdo->query($getSubjectQuery);
+          while($row = $getSubject->fetch(PDO::FETCH_ASSOC))
           {
-            echo ('<a href="#" class="list-group-item list-group-item-action bg-light">');
-            echo ($row['Stream_Name']);
+            echo ('<a href="displayResources.php?Type='.$_GET['Type'].'&Subject='.$row['Subject_ID'].'" class="list-group-item list-group-item-action bg-light">');
+            echo ($row['Subject_Name']);
             echo ('</a>');
           }
 
@@ -62,7 +64,7 @@
             <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="notes.php">Notes</a></li>
             <li class="nav-item"><a class="nav-link" href="resources.php">Resources</a></li>
-            <li class="nav-item" id="menu-toggle"><a class="nav-link" href="#">Software</a></li>
+            <li class="nav-item"><a class="nav-link" href="software.php">Software</a></li>
             <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
@@ -72,15 +74,37 @@
       </nav>
 
       <div class="container-fluid">
-        <div class="container">
-        <div class="row main-row">
-            <br>
-            <ul style="list-style-type: none">
-              <li> <a href="https://www.youtube.com/watch?v=U9NrXOBXA1I&list=PLWPirh4EWFpHukXICQrDcmjZUa2WlLMAb"> Computer Graphics lectures </a> </li>
-              <li> <a href="https://www.youtube.com/watch?v=Db9ZYbJONHc&list=PLVlQHNRLflP_OxF1QJoGBwH_TnZszHR_j"> Data Structures lectures </a> </li>
-            </ul>
-        </div>
-    </div>
+        <?php
+
+            if($_GET['Type']==4)
+            {
+              if($subjectID==1)
+              {
+                echo ("<p style='font-size: 20px'>These are some helpful reference videos for Data Structures</p>");
+                echo ('<iframe width="560" height="315" src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>');
+              }
+              else if($subjectID==2)
+              {
+                echo ("<p style='font-size: 20px'>These are some helpful reference videos for Computer Graphics</p>");
+                echo ('<iframe width="560" height="315" src="https://www.youtube.com/embed/U9NrXOBXA1I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>');
+              }
+            }
+            else
+            {
+              echo ("<p>Sorry, content for this part has not been added yet.</p><br>");
+            }
+            $next_Type=$_GET['Type']+1;
+            $prev_Type=$_GET['Type']-1;
+            if($_GET['Type']!=2)
+            {
+              echo ("<a href='displayResources.php?Type=".$prev_Type."&Subject=".$subjectID."'><button type='button' class='btn btn-outline-light'> Prev </button></a>");
+            }
+            if($_GET['Type']!=7)
+            {
+              echo ("<a href='displayResources.php?Type=".$next_Type."&Subject=".$subjectID."'><button type='button' class='btn btn-outline-light'> Next </button></a>");
+            }
+
+          ?>
       </div>
     </div>
     <!-- /#page-content-wrapper -->

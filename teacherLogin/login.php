@@ -16,21 +16,15 @@
 					$_SESSION["account"]==$row["Email_ID"];
 					$_SESSION['accountID']==$row['Teach_ID'];
 					$_SESSION["success"]=="Logged in";
-					header('Location: upload.php');
+					header('Location: upload.php?ID='.$row['Teach_ID'].'&Name='.$row['Name']);
 					exit();
 				}
 				else
 				{
-					$_SESSION["error"]=="Incorrect Password";
+					$_SESSION["error"]=="Incorrect Password or Email";
 					header('Location: login.php');
 					return;
 				}
-			}
-			else
-			{
-				$_SESSION["error"]=="This user is not registered.";
-				header('Location: login.php');
-				return;
 			}
 		}
 	}

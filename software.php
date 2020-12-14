@@ -21,10 +21,12 @@
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/rstyle.css">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
   <div class="d-flex" id="wrapper">
 

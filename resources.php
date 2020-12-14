@@ -21,10 +21,12 @@
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/rstyle.css">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
   <div class="d-flex" id="wrapper">
 
@@ -38,7 +40,9 @@
           $getSubject = $pdo->query($getSubjectQuery);
           while($row = $getSubject->fetch(PDO::FETCH_ASSOC))
           {
-            echo ('<a href="#" class="list-group-item list-group-item-action bg-light">');
+            $thisSubjectID = $row['Subject_ID'];
+            $subjectName = $row['Subject_Name'];
+            echo ('<a href="resources.php?subject='.$subjectName.'&ID='.$thisSubjectID.'" class="list-group-item list-group-item-action bg-light">');
             echo ($row['Subject_Name']);
             echo ('</a>');
           }
@@ -93,11 +97,11 @@
                           echo("<h5 class='card-title'>"); 
                             echo $row['Content_Type']; 
                           echo ("</h5>");
-                            echo("<p class='card-text'>");
-                            echo($row['Content_Type_Description']); 
-                          echo("</p>");
+                            //echo("<p class='card-text'>");
+                            //echo($row['Content_Type_Description']); 
+                          //echo("</p>");
                           echo("
-                            <a href='displayResources.php'><button type='button' class='btn btn-outline-dark'> View More </button></a>
+                            <a href='displayResources.php?Type=".$row['Content_Type_ID']."&Subject=".$_GET['ID']."'><button type='button' class='btn btn-outline-dark'> View More </button></a>
                           </div>
                         </div>
                       </div>");

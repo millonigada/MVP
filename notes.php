@@ -40,10 +40,12 @@
   <!-- Custom styles for this template -->
   <link href="css/MVP1.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/rstyle.css">
+  <link href="css/indexstyle.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
 
 </head>
 
-<body>
+<body background="https://cdn.wallpapersafari.com/33/16/gaI3sU.jpg">
 
   <div class="d-flex" id="wrapper">
 
@@ -87,13 +89,12 @@
             <li class="nav-item"><a class="nav-link" href="QnA.php">QnA</a></li>
           </ul>
           <ul class="navbar-nav navbar-right ml-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="teacherLogin/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Notes</h1>
         <div class="container">
         <div class="row main-row">
             <?php 
@@ -118,7 +119,7 @@
                           //   echo($row['Content_Type_Description']); 
                           // echo("</p>");
                           echo("
-                            <a href='notes.php?subject=".$subjectName."&ID=".$thisSubjectID."&module=".$moduleID."'><button type='button' class='btn btn-outline-dark'> View More </button></a>
+                            <a href='displayNotes.php?subject=".$subjectName."&ID=".$thisSubjectID."&module=".$moduleID."'><button type='button' class='btn btn-outline-dark'> View More </button></a>
                           </div>
                         </div>
                       </div>");
